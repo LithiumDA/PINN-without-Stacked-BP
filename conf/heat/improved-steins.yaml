@@ -1,0 +1,35 @@
+seed: 1234
+gpu_cnt: 1
+equation:
+  T: 1.0
+  x_dim: 100
+model: 
+  g_type: mlp
+  t_std: 0.01
+  x_std: 0.01
+  # derivative: steins
+  derivative: improved-steins
+  width: 256
+  depth: 4
+train:
+  iteration: 1000
+  model_sample_cnt: 2048
+  batch:
+    domain_size: 50
+    initial_size: 50
+    spatial_boundary_size: 50
+  loss:
+    domain: 1.0
+    initial: 1000
+    spatial_boundary: 1000
+  lr: 1e-3
+  scheduler:
+    name: linear # const, linear or step
+    step_size: -1 # required for step LR scheduler
+    gamma: 0.5
+    warm_up_steps: 0
+test:
+  step: 1000 # evaluate every x epochs
+  total_size: 10000
+  batch_size: 200
+  model_sample_cnt: 2048

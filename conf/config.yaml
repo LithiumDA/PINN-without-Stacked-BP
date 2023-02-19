@@ -1,0 +1,16 @@
+# task: hjb
+# task: possion
+task: heat
+
+log_path: ../log
+defaults:
+  - hjb: improved-steins
+  # - hjb: pinn
+  - possion: improved-steins
+  # - possion: pinn
+  - heat: improved-steins
+  # - heat: pinn
+
+hydra:
+  run:
+    dir: ${log_path}/${now:%Y-%m-%d-%H-%M-%S}/

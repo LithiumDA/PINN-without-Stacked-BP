@@ -1,0 +1,41 @@
+seed: 1234
+gpu_cnt: 1
+equation:
+  mu: 1.0
+  T: 1.0
+  x_dim: 250
+model: 
+  g_type: mlp
+  t_std: 0.01
+  x_std: 0.01
+  # derivative: steins
+  derivative: improved-steins
+  width: 768
+  depth: 4
+train:
+  iteration: 10000
+  model_sample_cnt: 2048
+  batch:
+    domain_size: 50
+    domain_sample_cnt: 2048
+    boundary_size: 50
+    boundary_sample_cnt: 2048
+  loss:
+    domain: 1.0
+    boundary: 500
+  adversarial: 
+    domain_is_adv: 1
+    boundary_is_adv: 1
+    grad_step_cnt: 20
+    grad_step_size: 0.05
+  lr: 2e-4
+  scheduler:
+    name: linear # const, linear or step
+    step_size: -1 # required for step LR scheduler
+    gamma: 0.5
+    warm_up_steps: 0
+test:
+  step: 10000 # evaluate every x epochs
+  batch_size: 200
+  model_sample_cnt: 2048
+  data_path: '../../Efficient-PINN/src/data/hjb_250_grad.pkl'
